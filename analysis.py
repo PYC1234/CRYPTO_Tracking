@@ -1,16 +1,16 @@
 """
-Crypto Market Analysis Agent
-=============================
-完整 Agent 工作流：感知 → 决策 → 行动 → 反馈 → 输出
+Crypto Market Analysis
+======================
+自动化分析流水线：感知 → 决策 → 行动 → 反馈 → 输出
 
 模块职责：
-  agent.py      — 编排器，控制整体工作流与决策逻辑
+  analysis.py   — 编排器，控制整体工作流与决策逻辑
   fetcher.py    — 感知层，从 CoinGecko API 获取实时数据
   analyzer.py   — 分析层，数据清洗 + 量化指标计算 + 策略判断
   reporter.py   — 输出层，生成 HTML 可视化报告
 
 运行方式：
-  python agent.py
+  python analysis.py
 """
 
 import json
@@ -21,7 +21,7 @@ from analyzer import MarketAnalyzer
 from reporter import ReportGenerator
 
 
-# ─── Agent 配置 ────────────────────────────────────────────────────────────────
+# ─── Analysis 配置 ────────────────────────────────────────────────────────────────
 
 CONFIG = {
     "top_n_coins": 20,           # 分析前 N 个币种
@@ -34,11 +34,11 @@ CONFIG = {
 }
 
 
-# ─── Agent 核心：工作流编排 ────────────────────────────────────────────────────
+# ─── Analysis 核心：工作流编排 ────────────────────────────────────────────────────
 
-class CryptoAgent:
+class CryptoAnalysis:
     """
-    Agent 工作流：
+    Analysis 工作流：
       Step 1  [感知]  获取实时市场数据
       Step 2  [清洗]  质量检查，修复脏数据
       Step 3  [决策]  评估市场状态，选择分析策略
@@ -150,5 +150,5 @@ class CryptoAgent:
 
 
 if __name__ == "__main__":
-    agent = CryptoAgent(CONFIG)
+    agent = CryptoAnalysis(CONFIG)
     agent.run()
